@@ -22,6 +22,7 @@ public class Solution {
         }
         ListNode slow = head;
         ListNode fast = head;
+        //快慢指针的经典题。 快指针每次走两步，慢指针一次走一步。 在慢指针进入环之后，快慢指针之间的距离每次缩小1，所以最终能相遇。
         while(fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
