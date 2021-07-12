@@ -18,6 +18,9 @@ class Solution {
     public int maxPathSum(TreeNode root) {
         //最开始思路：recusively traversal 这个tree，看看联通左右tree的话，是否能够更大
         //不能的话，把当前node加上左边或者加上右边，看看哪边大，然后返回给上一层
+        //pass了，但是用了global variable；
+        //如果不用global可以把max 和 当前路径的sum放进一个class里面return，就像是return两个values同理
+        //runtime是 O(n), space O(H), H是tree的height
         if (root == null) {
             return 0;
         }
