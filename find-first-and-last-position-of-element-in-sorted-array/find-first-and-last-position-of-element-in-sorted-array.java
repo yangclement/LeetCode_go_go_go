@@ -1,6 +1,8 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         //用binary search找到第一个element，然后用while loop找到最后一个element的position
+        //!!!!!这个方法不对，因为找到了第一个element，用while loop去找last element的runtime是O(N)
+        //如果用两次binary search，1 次找第一个位置, 1 次找第二个位置，这样是连个logn still O(logn)
         if (nums == null || nums.length  < 1) {
             return new int[] {-1, -1};
         }
