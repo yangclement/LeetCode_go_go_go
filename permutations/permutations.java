@@ -28,6 +28,7 @@ class Solution {
             if (visited[i] == true) {
                 continue;
             }
+            //典型backtrack做法，为了进入recursion所add的状态，出来以后都要remove掉
             visited[i] = true;
             curr.addLast(nums[i]);
             findAllResults(results, curr, nums, visited);
