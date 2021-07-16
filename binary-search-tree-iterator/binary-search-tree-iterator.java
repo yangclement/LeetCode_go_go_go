@@ -28,6 +28,10 @@ class BSTIterator {
     }
     
     public int next() {
+        //这里和jiuzhang的做法不一样，jiuzhang是peek，不拿出来，但此时这个peek的点已经visited了，应该是要拿出来的，jiuzhang的做法可能是模版，可以做其他的bst
+        //所以当right为null的时候，就要去找第一个通过左子树拐进来的node
+        //如果直接pop出来的话，当right为null，stack里面的下一个就必定是第一个通过左子树拐进来的点了。因为看过的点都pop了，没看过的根据inorder左中右就必定是第一个通过左子树拐进来的点
+        //复习的时候如果不懂可以看一下jiuzhang解法和视频
         TreeNode curr = this.stack.pop();
         if (curr.right != null) {
             findMostLeft(curr.right);
