@@ -20,6 +20,7 @@ class Solution {
         
         for (int i = startIndex; i <= n; i++) {
             curr.addLast(i);
+            //这里pass in的记得是i + 1，不是startIndex + 1;
             findComb(results, curr, n, k, i + 1);
             curr.removeLast();
         }
