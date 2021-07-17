@@ -9,6 +9,7 @@ class Solution {
         //使用linkedlist来记录当前的combination，因为如果backtrack返回上一层的时候，
         //方便把最后一个拿掉.
         //改进：似乎linkedin不方便加到最后result里面，所以还是用arraylist吧
+        //再改进：linkedlist可以直接变成新的arraylist加进去，反正都要new新的arraylist加到result里面
         List<Integer> comb = new ArrayList<>();
         List<List<Integer>> results = new ArrayList<>();
         findAllComb(comb, results, target, 0, candidates);
@@ -23,6 +24,7 @@ class Solution {
                             ) {
         //已经满足的，把当前combination加到result里面，返回上一层就好
         if (target == 0) {
+            //pass in 的是reference，如果直接加进result里面，上一层backtrackck完会移除出去，result就变成空的了
             List<Integer> clone = new ArrayList<>(currComb);
             results.add(clone);
             return;
