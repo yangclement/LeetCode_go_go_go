@@ -13,11 +13,19 @@ class Solution {
         int max = Integer.MIN_VALUE;
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
+            //上一个loop的最大windows size sum + num[上一个数字]还没有检查过是否大于k，如果大于了就舍弃掉windows最左边的数，也就是离当前i最远的那个
+            //从上一个for loop过来的都是上一个能达到最大的window size < k
             while (j < i && nums[i] * (i - j) - sum > k) {
                 sum -= nums[j++];
             }
+            //问题，为什么不用考虑 < k 然后j--的情况？
+            //这是一个同向双指针问题，如果小了，是靠外面的for loop把这个i增大
+            //使得这个window更大，只要保持j位置不变。
+            //
             max = Math.max(max, i - j + 1);
             //当前的这个数加入window里面进入下一个nums，因为当前nums[i]是最接近下一个数的，也就是nums[i + 1]
+            //这样的操作就是说每一个for loop，都把当前nums[i]加进去让这个windows变大
+            //到这里肯定就是当前i的最大windows size了
             sum += nums[i];
             
         } 
