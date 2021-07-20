@@ -4,7 +4,7 @@ class Solution {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        
+        //这题的sum比较难掌握，包不包括当前点比较tricky，复习时再做
         //解法三：基于解法一，解法一对于每个i都需要看i之前的每个sum[j]的value, 但是可以用hash map记录之前的sum[j]
         //因为hash map的retrieve是O(1), 就可以优化到O(n)
         //去hashmap找sum[i] - k这个key, value是 sum[i] - k出现的次数，就可以知道对于sum[i]为ending的有多少个等于k的subarray
