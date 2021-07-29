@@ -6,28 +6,29 @@ class Solution {
         int left = findBoundary(arr, x);
         int right = left + 1;
         //找到边界了，使用merge，拿k个element进array
-        List<Integer> results = new ArrayList<Integer>();
-        mergeKelement(results, arr, left, right, k, x);
-        Collections.sort(results);
-        return results;
+        mergeKelement(arr, left, right, k, x);
+        //因为这里要升序，所以要sort，但是就要nlogn，可以使用k个值的起始位置和end位置一个个加进去
+        // Collections.sort(results);
+        return mergeKelement(arr, left, right, k, x);
     }
-    private void mergeKelement(List<Integer> results, int[] arr, int left, int right, int k, int target) {
+    private List<Integer> mergeKelement(int[] arr, int left, int right, int k, int target) {
         while (k > 0) {
             if (left < 0) {
-                results.add(arr[right]);
                 right++;
             } else if (right > arr.length - 1) {
-                results.add(arr[left]);
                 left--;
             } else if (target - arr[left] <= arr[right] - target) {
-                results.add(arr[left]);
                 left--;
             } else {
-                results.add(arr[right]);
                 right++;
             }
             k--;
         }
+        List<Integer> results = new ArrayList<Integer>();
+        for (int i = left + 1; i < right; i++) {
+            results.add(arr[i]);
+        }
+        return results;
     }
     private int findBoundary(int[] arr, int target) {
         int start = 0;
