@@ -35,9 +35,12 @@ class Solution {
                 }
                 result.add(curr.val);
             }
-            //因为是用的是interface的list，没有addfirst，但是可以用下面add的方法把element add到第一个位置
-            results.add(0, result);
+            //因为是用的是interface的list，没有addfirst，但是可以用下面add的方法把element add到第一个位置,这个操作是O(n),因为要移动其他element
+            //其实最好不要这样，这样会造成O(n^2),在最后reverse就好了
+            // results.add(0, result);
+            results.add(result);
         }
+        Collections.reverse(results);
         return results;
     }
     
