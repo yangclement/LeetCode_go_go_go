@@ -1,5 +1,8 @@
 class Solution {
     public int minKnightMoves(int x, int y) {
+        //这道题的optimization：只要你能从第一象限出发到达 |x|,|y|,你就可以从其他象限用同样的steps到达
+        //所以可以优化只走第一象限，但是要特别处理(1,1)这个点as base case，因为他要先走出去负的象限，再回来。
+        
         //在bfs里面，在这种matrix里面，最好先用方向向量来定义一下，他所能移动的方向
         //因为guarrent 有一个 answer就不用edges case check了.
         int[][] directions = new int[][]{{-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {2, 1}, {1, 2}};
