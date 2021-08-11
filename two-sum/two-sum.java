@@ -1,5 +1,22 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        //third approch 双指针
+        //双指针的前提是要sort好的array
+        //这题还不能用双指针，因为返回的是index，一sort完index就乱了
+        // Arrays.sort(nums);
+        // int start = 0;
+        // int end = nums.length - 1;
+        // while (start < end) {
+        //     int sum = nums[start] + nums[end];
+        //     if (sum == target) {
+        //         return new int[] {start, end};
+        //     } else if (sum > target) {
+        //         end--;
+        //     } else {
+        //         start++;
+        //     }
+        // }
+        // return new int[] {-1, -1};
         //second approch, O(n)
         HashMap<Integer, Integer> exist = new HashMap<Integer, Integer>();
         int[] result= null;
