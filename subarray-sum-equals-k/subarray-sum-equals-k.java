@@ -8,20 +8,53 @@ class Solution {
         //解法三：基于解法一，解法一对于每个i都需要看i之前的每个sum[j]的value, 但是可以用hash map记录之前的sum[j]
         //因为hash map的retrieve是O(1), 就可以优化到O(n)
         //去hashmap找sum[i] - k这个key, value是 sum[i] - k出现的次数，就可以知道对于sum[i]为ending的有多少个等于k的subarray
-        int count = 0;
-        //key是sum，value是出现次数
-        Map<Integer, Integer> times = new HashMap<Integer, Integer>();
-        times.put(0, 1);
+        Map<Integer, Integer> count = new HashMap<>();
+        count.put(0, 1);
         int sum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            //上个element i - 1的sum 加上当前array，然后去找sum - k
-            sum += nums[i];
-            int diff = sum - k;
-            count += times.getOrDefault(diff, 0);
-            //存下到目前i的sum，包括sum到map
-            times.put(sum, times.getOrDefault(sum, 0) + 1);
+        int result = 0;
+        for (int num : nums) {
+            sum += num;
+            if (count.containsKey(sum - k)) {
+                result += count.get(sum - k);
+            }
+            count.put(sum, count.getOrDefault(sum, 0) + 1);
         }
-        return count;
+        return result;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // int count = 0;
+        // //key是sum，value是出现次数
+        // Map<Integer, Integer> times = new HashMap<Integer, Integer>();
+        // times.put(0, 1);
+        // int sum = 0;
+        // for (int i = 0; i < nums.length; i++) {
+        //     //上个element i - 1的sum 加上当前array，然后去找sum - k
+        //     sum += nums[i];
+        //     int diff = sum - k;
+        //     count += times.getOrDefault(diff, 0);
+        //     //存下到目前i的sum，包括sum到map
+        //     times.put(sum, times.getOrDefault(sum, 0) + 1);
+        // }
+        // return count;
 
         
         
