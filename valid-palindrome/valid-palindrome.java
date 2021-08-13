@@ -25,6 +25,7 @@ class Solution {
             }
             
         }
+        //出来之后还要检查一下，有可能start已经在end右边了
         char first = Character.toLowerCase(s.charAt(start));
         char last = Character.toLowerCase(s.charAt(end));
         return first == last;
