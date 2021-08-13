@@ -61,6 +61,8 @@ class Solution {
         Set<Node> visited = new HashSet<>();
         Queue<Node> queue = new ArrayDeque<>();
         queue.add(node);
+        visited.add(node);
+        nodes.add(node);
         while (!queue.isEmpty()) {
             Node curr = queue.poll();
             for (int i = 0; i < curr.neighbors.size(); i++) {
@@ -73,10 +75,10 @@ class Solution {
             }
             //走完邻居再看看自己是否被加进去了
             //但其实这一步有点多余，造成duplicate的code，可以直接把这个set转换成list return 就好了
-            if (!visited.contains(curr)) {
-                nodes.add(curr);
-                visited.add(curr);
-            }
+            // if (!visited.contains(curr)) {
+            //     nodes.add(curr);
+            //     visited.add(curr);
+            // }
         }
     }
 }
