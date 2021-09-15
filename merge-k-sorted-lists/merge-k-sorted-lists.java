@@ -10,34 +10,34 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        
-        if (lists==null || lists.length==0) return null;
-        //使用minheap，把k 个array的head都先放进去，直接pop就可以得到当前head的最小值
-        //minheap是 a - b， maxheap是 b - a
-        PriorityQueue<ListNode> queue= new PriorityQueue<ListNode>((a,b)-> a.val-b.val);
-        
+        if (lists == null) {
+            return null;
+        }
         ListNode dummy = new ListNode(0);
-        ListNode curr=dummy;
-        int k = lists.length;
-        for (int i = 0; i < lists.length; i++) {
-            //其中有一些sorted array是空的，跳过
-            if (lists[i] == null) {
-                k--;
+        ListNode curr = dummy;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
+        int k = 0;
+        for (ListNode list : lists) {
+            if (list == null) {
                 continue;
             }
-            queue.offer(lists[i]);
+            queue.offer(list);
+            k++;
         }
         
-        while (k > 0){
-            curr.next = queue.poll();
-            curr = curr.next;
-            
-            if (curr.next == null){
+        while (k > 0) {
+            ListNode currNode = queue.poll();
+            curr.next = currNode;
+            if (currNode.next == null) {
                 k--;
+                curr = curr.next;
                 continue;
             }
-            queue.offer(curr.next);
+            
+            queue.offer(currNode.next);
+            curr = curr.next;
         }
+        
         return dummy.next;
     }
 }
