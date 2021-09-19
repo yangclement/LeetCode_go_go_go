@@ -4,15 +4,19 @@ class Solution {
             return heights;
         }
         int rightMax = 0;
-        int[] results = new int[0];
+        List<Integer> temp = new ArrayList<>();
+
         for (int i = heights.length - 1; i >= 0; i--) {
             if (heights[i] > rightMax) {
-                results = Arrays.copyOf(results, results.length + 1);
-                results[results.length - 1] = i;
+                temp.add(i);
                 rightMax = Math.max(heights[i], rightMax);
             }
         }
-        Arrays.sort(results);
+        int index = 0;
+        int[] results = new int[temp.size()];
+        for (int i = temp.size() - 1; i >= 0; i--) {
+            results[index++] = temp.get(i);
+        }
         return results;
     }
 }
